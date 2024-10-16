@@ -1,27 +1,25 @@
-const express = require('express')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-require('dotenv').config()
-const connectDB = require('./config/db')
-const router = require('./routes')
+const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
+const connectDB = require('./config/db');
+const router = require('./routes');
 
-
-const app = express()
+const app = express();
 app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true
-}))
-app.use(express.json())
-app.use(cookieParser())
+    origin: process.env.FRONTEND_URL,
+    credentials: true
+}));
+app.use(express.json());
+app.use(cookieParser());
 
-app.use("/api",router)
+app.use("/api", router);
 
-const PORT = 8080 || process.env.PORT
+// Xuất hàm serverless
+module.exports = async (req, res) => {
+    // Kết nối đến cơ sở dữ liệu mỗi lần hàm được gọi
+    await connectDB();
 
-
-connectDB().then(()=>{
-    app.listen(PORT,()=>{
-        console.log("connnect to DB")
-        console.log("Server is running "+PORT)
-    })
-})
+    // Gọi middleware Express
+    app(req, res);
+};
