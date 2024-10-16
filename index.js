@@ -4,6 +4,6 @@ module.exports = async (req, res) => {
         app(req, res);
     } catch (error) {
         console.error("Database connection error:", error);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send("Internal Server Error" , error);
     }
 };
