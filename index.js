@@ -1,30 +1,33 @@
-const express = require('express')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-require('dotenv').config()
-const connectDB = require('./config/db')
-const router = require('./routes')
+const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
+const connectDB = require('./config/db');
+const router = require('./routes');
 
+const app = express();
 
-const app = express()
 app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true
-}))
-app.use(express.json())
-app.use(cookieParser())
+    origin: process.env.FRONTEND_URL,
+    credentials: true
+}));
+app.use(express.json());
+app.use(cookieParser());
 
-app.use("/api",router)
+// Định nghĩa router
+app.use("/api", router);
 
-const PORT = 8080 || process.env.PORT
-
-
+// Xuất hàm serverless
 module.exports = async (req, res) => {
     try {
+        // Kết nối đến cơ sở dữ liệu
         await connectDB();
-        app(req, res);
+        console.log("Database connected");
+        
+        // Gọi middleware Express
+        return app(req, res);
     } catch (error) {
         console.error("Database connection error:", error);
-        res.status(500).send("Internal Server Error");
+        return res.status(500).send("Internal Server Error");
     }
 };
