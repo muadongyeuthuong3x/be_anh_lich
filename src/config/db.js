@@ -6,13 +6,12 @@ async function connectDB() {
     if (!dbConnection) {
         try {
             dbConnection = await mongoose.connect(process.env.MONGODB_URI, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
+                // No need for useNewUrlParser and useUnifiedTopology
             });
             console.log("Database connected");
         } catch (err) {
             console.error("Database connection error:", err);
-            throw err; // Ném lại lỗi để xử lý ở nơi khác
+            throw err; // Re-throw the error for handling elsewhere
         }
     }
     return dbConnection;
