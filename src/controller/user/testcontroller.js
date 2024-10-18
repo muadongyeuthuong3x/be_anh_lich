@@ -1,6 +1,6 @@
 
 async function testData(req,res){
-  return res.json({message : "AAAAAAAAAAAAAAAA"})
+  return res.json({message : "13123"})
 }
 
 module.exports = testData
