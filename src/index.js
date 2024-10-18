@@ -8,9 +8,9 @@ const router = require('./routes')
 
 const app = express()
 app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true
-}))
+    origin: '*', // Accept requests from any origin
+    credentials: true, // Allows cookies to be sent
+}));
 app.use(express.json())
 app.use(cookieParser())
 
