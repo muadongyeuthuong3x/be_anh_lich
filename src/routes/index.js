@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 const userSignUpController = require("../controller/user/userSignUp")
+const testController = require("../controller/user/testcontroller")
 const userSignInController = require('../controller/user/userSignIn')
 const userDetailsController = require('../controller/user/userDetails')
 const authToken = require('../middleware/authToken')
@@ -23,7 +24,7 @@ const deleteAddToCartProduct = require('../controller/user/deleteAddToCartProduc
 const searchProduct = require('../controller/product/searchProduct')
 const filterProductController = require('../controller/product/filterProduct')
 
-
+router.get("/test",testController)
 
 router.post("/signup",userSignUpController)
 router.post("/signin",userSignInController)
