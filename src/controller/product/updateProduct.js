@@ -5,7 +5,7 @@ async function updateProductController(req,res){
     try{
 
         if(!uploadProductPermission(req.userId)){
-            throw new Error("Permission denied")
+            throw new Error("Bạn không có quyền")
         }
 
         const { _id, ...resBody} = req.body
@@ -13,7 +13,7 @@ async function updateProductController(req,res){
         const updateProduct = await productModel.findByIdAndUpdate(_id,resBody)
         
         res.json({
-            message : "Product update successfully",
+            message : "Tạo sản phẩm thành công",
             data : updateProduct,
             success : true,
             error : false

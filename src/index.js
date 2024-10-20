@@ -8,7 +8,7 @@ const router = require('./routes')
 
 const app = express()
 app.use(cors({
-    origin: process.env.FRONTEND_URL, // Replace with your frontend URL
+    origin: process.env.FRONTEND_URLL_LOCAL, // Replace with your frontend URL
     credentials: true,
 }));
 

@@ -13,7 +13,7 @@ async function UploadProductController(req,res){
         const saveProduct = await uploadProduct.save()
 
         res.status(201).json({
-            message : "Product upload successfully",
+            message : "Tạo sản phẩm thành công",
             error : false,
             success : true,
             data : saveProduct

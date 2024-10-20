@@ -5,24 +5,23 @@ const jwt = require('jsonwebtoken');
 async function userSignInController(req,res){
     try{
         const { email , password} = req.body
-        console.log(111111 ,email , password)
 
         if(!email){
-            throw new Error("Please provide email")
+            throw new Error("Vui lòng nhập đúng định email")
         }
         if(!password){
-             throw new Error("Please provide password")
+             throw new Error("Vui lòng nhập đúng password")
         }
 
         const user = await userModel.findOne({email})
 
        if(!user){
-            throw new Error("User not found")
+            throw new Error("Tài khoản đăng nhập không đúng")
        }
 
        const checkPassword = await bcrypt.compare(password,user.password)
 
-       console.log("checkPassoword",checkPassword)
+
 
        if(checkPassword){
         const tokenData = {
@@ -36,16 +35,17 @@ async function userSignInController(req,res){
             secure : true
         }
 
-        res.cookie("token",token,tokenOption).status(200).json({
-            message : "Login successfully",
+        return res.json({
+            message : "Đăng nhập thành công",
             data : token,
             role: user.role,
             success : true,
             error : false
         })
 
+
        }else{
-         throw new Error("Please check Password")
+         throw new Error("Tài khoản đăng nhập không đúng")
        }
 
 
