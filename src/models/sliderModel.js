@@ -7,6 +7,6 @@ const sliderSchema = mongoose.Schema({
     timestamps: true
 });
 
-const productModel = mongoose.model("slider", sliderSchema);
+const sliderModel = mongoose.model("slider", sliderSchema);
 
-module.exports = productModel; 
+module.exports = sliderModel; 

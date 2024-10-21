@@ -23,6 +23,8 @@ const updateAddToCartProduct = require('../controller/user/updateAddToCartProduc
 const deleteAddToCartProduct = require('../controller/user/deleteAddToCartProduct')
 const searchProduct = require('../controller/product/searchProduct')
 const filterProductController = require('../controller/product/filterProduct')
+const  sliderControlelr = require("../controller/slider/slider.controller")
+const getSliderController = require("../controller/slider/getSlider.controller")
 
 router.get("/test",testController)
 
@@ -34,6 +36,11 @@ router.get("/userLogout",userLogout)
 //admin panel 
 router.get("/all-user",authToken,allUsers)
 router.post("/update-user",authToken,updateUser)
+
+
+// sliderf 
+router.post("/sliders",authToken,sliderControlelr)
+router.get("/sliders", getSliderController)
 
 //product
 router.post("/upload-product",authToken,UploadProductController)

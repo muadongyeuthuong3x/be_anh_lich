@@ -1,19 +1,18 @@
-const sliderSchema = require("../../models/sliderModel")
+const sliderModel = require("../../models/sliderModel")
 
 const updateToCreateSlider = async (req, res) => {
     try {
-        const sliderList = req?.body?.sliders || [];
-
-        const dataSlider = await sliderSchema.find({})
+        const sliderList = req?.body?.productImage || [];
+        const dataSlider = await sliderModel.findOne({});
         if (dataSlider) {
             const { _id } = dataSlider;
             await sliderModel.findOneAndUpdate(
-                { _id: _id }, // Condition to find the document by ID
-                { url_image: dataSlider }, // New data to update
-                { new: true } // Return the updated document
+                { _id: _id },
+                { url_image: sliderList },
+                { new: true }
             );
         } else {
-            const newSlider = new sliderSchema(sliderList);
+            const newSlider = new sliderModel(sliderList);
             await newSlider.save();
         }
 
