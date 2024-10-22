@@ -25,6 +25,7 @@ const searchProduct = require('../controller/product/searchProduct')
 const filterProductController = require('../controller/product/filterProduct')
 const  sliderControlelr = require("../controller/slider/slider.controller")
 const getSliderController = require("../controller/slider/getSlider.controller")
+const categoryController = require("../controller/category/createCategory"); 
 
 router.get("/test",testController)
 
@@ -41,6 +42,12 @@ router.post("/update-user",authToken,updateUser)
 // sliderf 
 router.post("/sliders",authToken,sliderControlelr)
 router.get("/sliders", getSliderController)
+
+// category
+
+router.post("/category",authToken,categoryController.createCategory)
+router.get("/category",categoryController.getCategory)
+router.delete("/category/:id",authToken,categoryController.deleteCategory)
 
 //product
 router.post("/upload-product",authToken,UploadProductController)
