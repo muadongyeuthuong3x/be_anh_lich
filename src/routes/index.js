@@ -26,6 +26,7 @@ const filterProductController = require('../controller/product/filterProduct')
 const  sliderControlelr = require("../controller/slider/slider.controller")
 const getSliderController = require("../controller/slider/getSlider.controller")
 const categoryController = require("../controller/category/createCategory"); 
+const contactController  = require("../controller/contact/contact")
 
 router.get("/test",testController)
 
@@ -42,6 +43,11 @@ router.post("/update-user",authToken,updateUser)
 // sliderf 
 router.post("/sliders",authToken,sliderControlelr)
 router.get("/sliders", getSliderController)
+
+// contact 
+router.post("/contact",contactController.createContact)
+router.get("/contact",contactController.getContact)
+router.delete("/contact/:id",authToken,contactController.deleteContact)
 
 // category
 
