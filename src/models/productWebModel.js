@@ -4,12 +4,11 @@ const productSchema = mongoose.Schema({
     productName : String,
     brandName : String,
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'category', required: true },
-    imageView : String,
     productImage : [],
     description : String,
     price : Number,
     sellingPrice : Number,
-    isActive : Boolean,
+    isActive: { type: Boolean, default: true },
 },{
     timestamps : true
 })
